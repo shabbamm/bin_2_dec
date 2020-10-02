@@ -18,18 +18,21 @@ bonus features:
 - user can enter a variable number of digits
 */
 
-fn bin_2_dec(range: i32) -> i32 {
+fn bin_2_dec(binary_string: &str) -> i32 {
     let mut sum = 0;
+    let mut characters = binary_string.chars().rev();
     
-    for n in 0..range {
-        let mut power = 
-        sum += num::pow(2, 3);
-        println!("{}", sum);
+    for n in 0..binary_string.len() {
+        if characters.next() == Some('1') {
+            sum += num::pow(2, n as usize);
+        }
     }
-
+    println!("{}", sum);
     sum
 }
 
 fn main() {
-    bin_2_dec(10);
+    let binary = "100000000";
+
+    bin_2_dec(binary);
 }
