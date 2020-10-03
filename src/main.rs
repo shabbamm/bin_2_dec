@@ -20,19 +20,25 @@ bonus features:
 
 fn bin_2_dec(binary_string: &str) -> i32 {
     let mut sum = 0;
-    let mut characters = binary_string.chars().rev();
-    
+    let mut characters = binary_string.trim_end().chars().rev();
+
+    // find a way to strip escape chars so i dont have to reduce by 2
     for n in 0..binary_string.len() {
         if characters.next() == Some('1') {
             sum += num::pow(2, n as usize);
         }
     }
+
     println!("{}", sum);
     sum
 }
 
 fn main() {
-    let binary = "100000000";
+    println!("Enter a binary number: (1's and 0's)");
 
-    bin_2_dec(binary);
+    let mut binary = String::new();
+
+    let _user_input = std::io::stdin().read_line(&mut binary);
+
+    bin_2_dec(&binary);
 }
